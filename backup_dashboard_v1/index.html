@@ -1,0 +1,23 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Nexus</title><link rel="stylesheet" href="/static/css/app.css"></head><body>
+<main class="shell">
+<header class="heroHeader">
+ <div class="greeting"><p class="eyebrow">NEXUS</p><h1>Good afternoon, Niranjan</h1><p id="confidenceText">Your world is being reviewed.</p><div class="live"><span class="brain">🧠</span><b id="brainState">Correlating</b><i class="pulse"></i><span>Monitoring</span></div></div>
+ <div class="calm" aria-label="Calm mountain lake illustration"><div class="sun"></div><div class="mountain m1"></div><div class="mountain m2"></div><div class="lake"></div></div>
+</header>
+<section class="confidenceBar"><div><span>Today's confidence</span><b><i id="confidence">--</i>%</b></div><p id="decisionSummary">Loading…</p><a href="/mailboxes">Mailboxes</a> · <a href="/developer">Developer</a></section>
+<section class="section">
+  <div class="title"><div><p class="eyebrow">NEXUS AT WORK</p><h2>Processed without disturbing you</h2></div></div>
+  <div id="nexusWorkStrip" class="nexus-work-strip"></div>
+  <p id="processedSummary" class="muted"></p>
+</section>
+<section class="section">
+  <div class="title"><div><p class="eyebrow">SIGNALS</p><h2>What materially changed</h2></div><a href="/evidence-explorer">Review evidence</a></div>
+  <div id="signalsGrid" class="signals-grid"></div>
+</section>
+<section class="section"><div class="title"><div><p class="eyebrow">DECISIONS</p><h2>Needs your judgement</h2></div><span id="decisionCount" class="pill">0</span></div><div id="decisions" class="grid decisions"></div></section>
+<section class="section"><div class="title"><div><p class="eyebrow">YOUR WORKSPACE</p><h2>Pinned blocks</h2></div><small>Drag to rearrange</small></div><div id="workspace" class="grid workspace"></div></section>
+<section class="section"><div class="title"><div><p class="eyebrow">SIGNALS</p><h2>Meaningful changes</h2></div><div class="atwork"><b id="reviewed">0</b> reviewed · <b id="saved">0</b> saved</div></div><div id="signals" class="grid signals"></div></section>
+<section class="section lower"><div><div class="title"><div><p class="eyebrow">WATCHLIST</p><h2>Relationships & trajectories</h2></div></div><div id="entities" class="grid entityGrid"></div></div>
+<aside class="notePanel"><p class="eyebrow">QUICK NOTE</p><h2>Capture a thought</h2><textarea id="noteText" maxlength="500" placeholder="Type a note, idea or reminder…"></textarea><button id="saveNote">Save note</button><div id="notes"></div></aside></section>
+</main><script src="/static/js/app.js"></script><script src="/static/js/dashboard_intelligence.js"></script>
+</body></html>

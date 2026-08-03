@@ -1,13 +1,136 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Nexus</title><link rel="stylesheet" href="/static/css/app.css"></head><body>
-<main class="shell">
-<header class="heroHeader">
- <div class="greeting"><p class="eyebrow">NEXUS</p><h1>Good afternoon, Niranjan</h1><p id="confidenceText">Your world is being reviewed.</p><div class="live"><span class="brain">🧠</span><b id="brainState">Correlating</b><i class="pulse"></i><span>Monitoring</span></div></div>
- <div class="calm" aria-label="Calm mountain lake illustration"><div class="sun"></div><div class="mountain m1"></div><div class="mountain m2"></div><div class="lake"></div></div>
-</header>
-<section class="confidenceBar"><div><span>Today's confidence</span><b><i id="confidence">--</i>%</b></div><p id="decisionSummary">Loading…</p><a href="/mailboxes">Mailboxes</a> · <a href="/developer">Developer</a></section>
-<section class="section"><div class="title"><div><p class="eyebrow">DECISIONS</p><h2>Needs your judgement</h2></div><span id="decisionCount" class="pill">0</span></div><div id="decisions" class="grid decisions"></div></section>
-<section class="section"><div class="title"><div><p class="eyebrow">YOUR WORKSPACE</p><h2>Pinned blocks</h2></div><small>Drag to rearrange</small></div><div id="workspace" class="grid workspace"></div></section>
-<section class="section"><div class="title"><div><p class="eyebrow">SIGNALS</p><h2>Meaningful changes</h2></div><div class="atwork"><b id="reviewed">0</b> reviewed · <b id="saved">0</b> saved</div></div><div id="signals" class="grid signals"></div></section>
-<section class="section lower"><div><div class="title"><div><p class="eyebrow">WATCHLIST</p><h2>Relationships & trajectories</h2></div></div><div id="entities" class="grid entityGrid"></div></div>
-<aside class="notePanel"><p class="eyebrow">QUICK NOTE</p><h2>Capture a thought</h2><textarea id="noteText" maxlength="500" placeholder="Type a note, idea or reminder…"></textarea><button id="saveNote">Save note</button><div id="notes"></div></aside></section>
-</main><script src="/static/js/app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Nexus</title>
+  <link rel="stylesheet" href="/static/css/dashboard_v2.css">
+</head>
+<body>
+  <main class="nexus-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">NEXUS</p>
+        <h1 id="greeting">Good evening, Niranjan</h1>
+        <p class="hero-summary" id="heroSummary">Your second layer is reviewing what matters.</p>
+
+        <div class="brain-row">
+          <div class="brain-chip">
+            <span class="brain-icon">🧠</span>
+            <span><strong id="brainState">Thinking</strong><small>Brain</small></span>
+          </div>
+          <div class="brain-chip">
+            <span class="heartbeat-dot"></span>
+            <span><strong id="heartbeatState">Healthy</strong><small>Heartbeat</small></span>
+          </div>
+          <div class="brain-chip">
+            <span class="sensor-icon">◉</span>
+            <span><strong id="sensorCount">0</strong><small>Sensors</small></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="calm-panel" aria-label="Calming landscape illustration">
+        <svg viewBox="0 0 520 260" role="img" aria-label="Calm blue mountain lake">
+          <defs>
+            <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#dfe9ff"/>
+              <stop offset="100%" stop-color="#f7faff"/>
+            </linearGradient>
+            <linearGradient id="water" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#c9d9ff"/>
+              <stop offset="100%" stop-color="#eef4ff"/>
+            </linearGradient>
+          </defs>
+          <rect width="520" height="260" rx="30" fill="url(#sky)"/>
+          <circle cx="420" cy="58" r="28" fill="#ffffff" opacity=".75"/>
+          <path d="M0 175 L95 82 L165 152 L260 50 L375 167 L450 102 L520 170 L520 260 L0 260 Z" fill="#89a7e8" opacity=".52"/>
+          <path d="M0 198 L120 135 L205 190 L320 104 L520 190 L520 260 L0 260 Z" fill="#567fd6" opacity=".45"/>
+          <rect y="187" width="520" height="73" fill="url(#water)" opacity=".92"/>
+          <path d="M20 212 C100 198 180 223 255 210 C330 198 400 219 500 204" stroke="#ffffff" stroke-width="4" fill="none" opacity=".7"/>
+        </svg>
+      </div>
+    </header>
+
+    <section class="confidence-grid">
+      <article class="panel confidence-panel">
+        <div>
+          <p class="eyebrow">TODAY'S CONFIDENCE</p>
+          <div class="confidence-score"><span id="confidenceScore">--</span><small>%</small></div>
+          <p id="confidenceText">Checking your connected world.</p>
+        </div>
+        <div class="confidence-ring" id="confidenceRing"></div>
+      </article>
+
+      <article class="panel work-panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">NEXUS AT WORK</p>
+            <h2>Already reviewed</h2>
+          </div>
+          <a href="/developer-console">Developer Console</a>
+        </div>
+        <div id="workStats" class="work-stats"></div>
+      </article>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">NEEDS YOUR JUDGEMENT</p>
+          <h2>Decisions</h2>
+        </div>
+        <span class="count-pill" id="decisionCount">0</span>
+      </div>
+      <div id="decisionGrid" class="decision-grid"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">YOUR WORKSPACE</p>
+          <h2>Move tiles to arrange priorities</h2>
+        </div>
+        <small>Drag on desktop · press and move on supported devices</small>
+      </div>
+      <div id="workspaceGrid" class="workspace-grid"></div>
+    </section>
+
+    <section class="section two-col">
+      <article>
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">SIGNALS</p>
+            <h2>What materially changed</h2>
+          </div>
+          <a href="/evidence-explorer">Review evidence</a>
+        </div>
+        <div id="signalGrid" class="signal-grid"></div>
+      </article>
+
+      <article class="panel note-panel">
+        <p class="eyebrow">QUICK NOTE</p>
+        <h2>Capture what is on your mind</h2>
+        <textarea id="quickNote" placeholder="Type a note, idea, reminder, or follow-up..."></textarea>
+        <div class="note-actions">
+          <button id="saveNote" type="button">Save note</button>
+          <span id="noteStatus"></span>
+        </div>
+        <div id="recentNotes" class="recent-notes"></div>
+      </article>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">DYNAMIC ZONE</p>
+          <h2>Relevant now</h2>
+        </div>
+      </div>
+      <div id="dynamicGrid" class="dynamic-grid"></div>
+    </section>
+  </main>
+
+  <script src="/static/js/dashboard_v2.js"></script>
+</body>
+</html>

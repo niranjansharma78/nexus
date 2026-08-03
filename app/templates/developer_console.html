@@ -1,0 +1,16 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nexus Developer Console</title><link rel="stylesheet" href="/static/css/app.css">
+<style>.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.m{background:white;border:1px solid var(--line);border-radius:18px;padding:16px}.m b{display:block;font-size:28px}.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line)}@media(max-width:850px){.metrics{grid-template-columns:repeat(2,1fr)}.cols{grid-template-columns:1fr}}</style>
+</head><body><main class="shell"><header class="topbar"><div><p class="eyebrow">ENGINEERING VIEW</p><h1>Developer Console</h1><p class="muted">Evidence flow, signal quality and mailbox health.</p></div><div><a class="button" href="/evidence-explorer">Evidence Explorer</a> <a class="button" href="/">Back</a></div></header>
+<section class="metrics">
+<div class="m"><small>Evidence</small><b>{{summary.totals.evidence}}</b></div>
+<div class="m"><small>IMAP</small><b>{{summary.totals.imap}}</b></div>
+<div class="m"><small>High signal</small><b>{{summary.totals.high_signal}}</b></div>
+<div class="m"><small>Decisions</small><b>{{summary.totals.decisions}}</b></div>
+<div class="m"><small>Confidence</small><b>{{summary.totals.avg_confidence}}%</b></div>
+</section>
+<section class="section cols">
+<article class="card"><p class="eyebrow">DOMAINS</p><h2>Evidence mix</h2>{% for x in summary.by_domain %}<div class="row"><span>{{x.domain}}</span><b>{{x.count}}</b></div>{% endfor %}</article>
+<article class="card"><p class="eyebrow">CATEGORIES</p><h2>Interpretation</h2>{% for x in summary.by_category %}<div class="row"><span>{{x.category}}</span><b>{{x.count}}</b></div>{% endfor %}</article>
+<article class="card"><p class="eyebrow">MAILBOXES</p><h2>Sensor health</h2>{% for x in summary.mailboxes %}<div class="row"><span>{{x.label}}<small>{{x.username}}</small></span><span><b>{{x.last_scan_count}}</b><small>{{x.last_scan_at or "Not scanned"}}</small></span></div>{% else %}<p class="muted">No mailbox profile.</p>{% endfor %}</article>
+</section></main></body></html>

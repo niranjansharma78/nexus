@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Mailboxes · Nexus</title>
+  <link rel="stylesheet" href="/static/css/app.css">
+  <style>
+    .mail-grid{display:grid;grid-template-columns:1fr .8fr;gap:18px;align-items:start}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .form-grid .full{grid-column:1/-1}
+    label{display:block;font-size:13px;font-weight:700}
+    input,select{width:100%;margin-top:6px;padding:12px;border:1px solid var(--line);border-radius:12px;background:white}
+    .check{display:flex;gap:9px;align-items:center}
+    .check input{width:auto;margin:0}
+    .result{padding:14px;border-radius:14px;background:#eef8f3;color:#176b4b;margin-bottom:14px}
+    .error{padding:14px;border-radius:14px;background:#fff0f0;color:#9b2c2c;margin-bottom:14px}
+    .profiles{display:grid;gap:10px}
+    .profile{background:white;border:1px solid var(--line);border-radius:15px;padding:14px}
+    .profile b,.profile small{display:block}
+    .security-note{font-size:13px;color:var(--muted);background:#f7f8fc;border-radius:14px;padding:13px}
+    @media(max-width:800px){.mail-grid,.form-grid{grid-template-columns:1fr}.form-grid .full{grid-column:auto}}
+  </style>
+</head>
+<body>
+<main class="shell">
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">READ-ONLY SENSOR</p>
+      <h1>Connect office email</h1>
+      <p class="muted">Nexus reads selected messages without sending, deleting, moving, or marking them as read.</p>
+    </div>
+    <a class="button" href="/">Back to Nexus</a>
+  </header>
+
+  {% if result %}
+  <div class="result">
+    Connected. Scanned {{ result.scanned }} messages, added {{ result.inserted }} new evidence items,
+    and ignored {{ result.duplicates }} duplicates.
+  </div>
+  {% endif %}
+  {% if error %}
+  <div class="error">{{ error }}</div>
+  {% endif %}
+
+  <section class="mail-grid">
+    <article class="card">
+      <div class="title">
+        <div><p class="eyebrow">ADD MAILBOX</p><h2>IMAP connection</h2></div>
+        <span class="pill green">READ ONLY</span>
+      </div>
+
+      <form method="post" action="/mailboxes/scan" class="form-grid">
+        <label>Mailbox label
+          <input name="label" placeholder="Office Mail" required>
+        </label>
+        <label>Email address / username
+          <input name="username" type="email" placeholder="you@company.com" required>
+        </label>
+        <label>IMAP server
+          <input name="host" placeholder="imap.company.com" required>
+        </label>
+        <label>Port
+          <input name="port" type="number" value="993" required>
+        </label>
+        <label>Folder
+          <input name="folder" value="INBOX" required>
+        </label>
+        <label>Messages to scan
+          <input name="limit" type="number" value="50" min="1" max="500" required>
+        </label>
+        <label class="full">Password or app password
+          <input name="password" type="password" autocomplete="current-password" required>
+        </label>
+        <label class="check full">
+          <input name="use_ssl" type="checkbox" checked>
+          Use SSL/TLS
+        </label>
+        <div class="full security-note">
+          The password is used only for this scan and is not stored in the Nexus database.
+          The mailbox profile stores only the server, username, folder, and scan status.
+        </div>
+        <button class="button full" type="submit">Test and scan mailbox</button>
+      </form>
+    </article>
+
+    <aside class="card">
+      <p class="eyebrow">CONNECTED PROFILES</p>
+      <h2>Known mailboxes</h2>
+      <div class="profiles">
+        {% for p in profiles %}
+        <div class="profile">
+          <b>{{ p.label }}</b>
+          <small>{{ p.username }}</small>
+          <small>{{ p.host }}:{{ p.port }} · {{ p.folder }}</small>
+          <small>Last scan: {{ p.last_scan_at or "Not scanned" }} · {{ p.last_scan_count }} messages</small>
+        </div>
+        {% else %}
+        <p class="muted">No mailbox profile has been connected yet.</p>
+        {% endfor %}
+      </div>
+    </aside>
+  </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,198 @@
+/* Nexus Evidence Responsive V1
+   Prevents horizontal page scrolling and converts wide evidence tables
+   into compact mobile cards on smaller screens.
+*/
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.evidence-page,
+.evidence-shell,
+.evidence-container,
+main {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.evidence-table-wrap,
+.table-wrap,
+.table-container,
+.data-table-wrap {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
+table {
+  width: 100% !important;
+  max-width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  min-width: 0 !important;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  white-space: normal !important;
+}
+
+td a,
+td button,
+td code,
+td pre,
+td span,
+td div {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+td pre,
+td code {
+  white-space: pre-wrap !important;
+}
+
+.evidence-summary,
+.summary-cell,
+.title-cell,
+.entity-cell,
+.source-cell {
+  min-width: 0 !important;
+  max-width: 100% !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.evidence-summary,
+.summary-cell {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-clamp: 3;
+}
+
+.evidence-actions,
+.action-cell,
+.actions-cell {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.evidence-actions button,
+.action-cell button,
+.actions-cell button,
+.evidence-actions a,
+.action-cell a,
+.actions-cell a {
+  max-width: 100%;
+  white-space: normal;
+}
+
+@media (max-width: 900px) {
+  table.evidence-table,
+  .evidence-table,
+  table[data-evidence-table] {
+    display: block;
+    width: 100%;
+  }
+
+  table.evidence-table thead,
+  .evidence-table thead,
+  table[data-evidence-table] thead {
+    display: none;
+  }
+
+  table.evidence-table tbody,
+  .evidence-table tbody,
+  table[data-evidence-table] tbody {
+    display: grid;
+    gap: 10px;
+    width: 100%;
+  }
+
+  table.evidence-table tr,
+  .evidence-table tr,
+  table[data-evidence-table] tr {
+    display: block;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #e4e9f2;
+    border-radius: 14px;
+    padding: 10px 11px;
+    box-shadow: 0 8px 22px rgba(34, 51, 92, 0.06);
+  }
+
+  table.evidence-table td,
+  .evidence-table td,
+  table[data-evidence-table] td {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr);
+    gap: 8px;
+    width: 100% !important;
+    max-width: 100%;
+    padding: 5px 0 !important;
+    border: 0 !important;
+    text-align: left !important;
+  }
+
+  table.evidence-table td::before,
+  .evidence-table td::before,
+  table[data-evidence-table] td::before {
+    content: attr(data-label);
+    color: #6d7788;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  table.evidence-table td:empty,
+  .evidence-table td:empty,
+  table[data-evidence-table] td:empty {
+    display: none;
+  }
+
+  .evidence-filters,
+  .filter-row,
+  .filters-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .evidence-filters input,
+  .evidence-filters select,
+  .evidence-filters button,
+  .filter-row input,
+  .filter-row select,
+  .filter-row button,
+  .filters-row input,
+  .filters-row select,
+  .filters-row button {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .evidence-filters,
+  .filter-row,
+  .filters-row {
+    grid-template-columns: 1fr;
+  }
+
+  table.evidence-table td,
+  .evidence-table td,
+  table[data-evidence-table] td {
+    grid-template-columns: 78px minmax(0, 1fr);
+  }
+}

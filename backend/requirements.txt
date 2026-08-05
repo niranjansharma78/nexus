@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+jinja2
+python-multipart
+itsdangerous
+httpx
+pytest
+
+pypdf
+
+openpyxl
+
+python-docx

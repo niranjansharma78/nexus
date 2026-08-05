@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#2455d6">
+  <title>Delegations · Nexus</title>
+  <link rel="stylesheet" href="/static/css/delegation_board.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">EXECUTION LAYER</p>
+        <h1>Delegations</h1>
+        <p>Track what Nexus has assigned internally without writing back to ERP or email.</p>
+      </div>
+      <a href="/">Back Home</a>
+    </header>
+
+    <section class="summary-grid" id="summaryGrid">
+      <article><b id="openCount">0</b><small>Open</small></article>
+      <article><b id="progressCount">0</b><small>In progress</small></article>
+      <article><b id="doneCount">0</b><small>Done</small></article>
+      <article><b id="ownerCount">0</b><small>Owners</small></article>
+    </section>
+
+    <section class="controls">
+      <select id="statusFilter">
+        <option value="">All statuses</option>
+        <option value="open">Open</option>
+        <option value="in_progress">In progress</option>
+        <option value="done">Done</option>
+        <option value="cancelled">Cancelled</option>
+      </select>
+      <input id="searchBox" placeholder="Search title, summary, owner">
+      <button id="refreshBtn" type="button">Refresh</button>
+    </section>
+
+    <section id="delegationList" class="delegation-list"></section>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="/">⌂<small>Home</small></a>
+    <a class="active" href="/delegations">✓<small>Delegations</small></a>
+    <a href="/evidence-explorer">▣<small>Evidence</small></a>
+    <a href="/developer-console">◇<small>Worlds</small></a>
+    <a href="/mailboxes">⚙<small>Settings</small></a>
+  </nav>
+
+  <script src="/static/js/delegation_board.js"></script>
+</body>
+</html>

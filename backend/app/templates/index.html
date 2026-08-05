@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#2455d6">
+  <title>Nexus Home</title>
+  <link rel="stylesheet" href="/static/css/mobile_home.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="top-card">
+      <div class="greeting-row">
+        <div>
+          <p class="eyebrow">NEXUS HOME</p>
+          <h1 id="greeting">Good evening, Niranjan</h1>
+        </div>
+        <a class="settings-link" href="/mailboxes" aria-label="Connections">⚙</a>
+      </div>
+
+      <div class="alive-row">
+        <article class="life-card">
+          <div class="brain-orb" id="brainOrb" aria-label="Nexus Brain">
+            <svg viewBox="0 0 120 120" role="img" aria-label="Animated brain">
+              <path class="brain-outline" d="M59 20c-9-10-27-5-27 10-11 0-17 14-10 23-8 8-2 22 9 22 0 14 17 19 27 10 10 9 27 4 27-10 11 0 17-14 9-22 7-9 1-23-10-23 0-15-18-20-27-10z"/>
+              <path class="neural-path path-a" d="M39 38c12 6 18 14 20 27"/>
+              <path class="neural-path path-b" d="M81 38c-12 6-18 14-20 27"/>
+              <path class="neural-path path-c" d="M40 76c10-6 17-6 27 0"/>
+              <circle class="node node-a" cx="39" cy="38" r="3"/>
+              <circle class="node node-b" cx="81" cy="38" r="3"/>
+              <circle class="node node-c" cx="60" cy="65" r="3"/>
+              <circle class="node node-d" cx="40" cy="76" r="3"/>
+              <circle class="node node-e" cx="67" cy="76" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <strong id="brainState">Thinking</strong>
+            <small>Brain</small>
+          </div>
+        </article>
+
+        <article class="life-card">
+          <div class="heart-wrap" aria-label="System heartbeat">
+            <svg class="heart-svg" viewBox="0 0 100 90" role="img" aria-label="Healthy heartbeat">
+              <path class="heart-shape" d="M50 82C28 64 10 50 10 30 10 13 31 5 50 22 69 5 90 13 90 30c0 20-18 34-40 52z"/>
+            </svg>
+            <span class="heart-wave"></span>
+          </div>
+          <div>
+            <strong id="healthState">Healthy</strong>
+            <small>Heartbeat</small>
+          </div>
+        </article>
+      </div>
+
+      <section class="brief-card">
+        <p id="briefSummary">Reviewing your digital world.</p>
+        <div class="brief-stats">
+          <div><b id="reviewedCount">0</b><small>reviewed</small></div>
+          <div><b id="ignoredCount">0</b><small>handled</small></div>
+          <div><b id="signalsCount">0</b><small>signals</small></div>
+          <div><b id="decisionsCount">0</b><small>decisions</small></div>
+        </div>
+        <div class="time-saved">
+          <span>Estimated thinking saved</span>
+          <strong id="timeSaved">0 min</strong>
+        </div>
+      </section>
+    </header>
+
+    <section class="section">
+      <div class="section-head">
+        <div><p class="eyebrow">NEEDS YOU</p><h2>Judgement</h2></div>
+        <span class="count-pill" id="decisionPill">0</span>
+      </div>
+      <div id="decisionCards" class="card-grid"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div><p class="eyebrow">YOUR WORLDS</p><h2>Where life is moving</h2></div>
+      </div>
+      <div class="world-grid">
+        <button class="world-card" data-world="business">
+          <span class="world-icon">💼</span><strong>Business</strong><small id="businessWorld">Under control</small>
+        </button>
+        <button class="world-card" data-world="family">
+          <span class="world-icon">🏠</span><strong>Family</strong><small id="familyWorld">Quiet</small>
+        </button>
+        <button class="world-card" data-world="personal">
+          <span class="world-icon">🙋</span><strong>Personal</strong><small id="personalWorld">Stable</small>
+        </button>
+        <button class="world-card" data-world="digital">
+          <span class="world-icon">🌐</span><strong>Digital</strong><small id="digitalWorld">Monitoring</small>
+        </button>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div><p class="eyebrow">SIGNALS</p><h2>What changed</h2></div>
+        <a href="/evidence-explorer">Evidence</a>
+      </div>
+      <div id="signalCards" class="signal-list"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div><p class="eyebrow">HANDLED FOR YOU</p><h2>Quiet updates</h2></div>
+      </div>
+      <div id="handledCards" class="handled-grid"></div>
+    </section>
+
+    <section class="section">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">BANKING ACTIVITY</p>
+      <h2>Recent credits and debits</h2>
+    </div>
+  </div>
+  <div id="bankingHighlights" class="banking-highlights"></div>
+</section>
+
+<section class="section compact-section">
+      <article class="note-card">
+        <div class="section-head">
+          <div><p class="eyebrow">QUICK NOTE</p><h2>Capture and continue</h2></div>
+        </div>
+        <textarea id="quickNote" placeholder="Idea, reminder, follow-up..."></textarea>
+        <div class="note-actions">
+          <button id="saveNote" type="button">Save</button>
+          <span id="noteStatus"></span>
+        </div>
+      </article>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div><p class="eyebrow">RELEVANT NOW</p><h2 id="dynamicTitle">Evening view</h2></div>
+      </div>
+      <div id="dynamicCards" class="dynamic-grid"></div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Primary navigation">
+    <a class="active" href="/">⌂<small>Home</small></a>
+    <a href="/delegations">✓<small>Delegations</small></a>
+    <a href="/evidence-explorer">▣<small>Evidence</small></a>
+    <a href="/developer-console">◇<small>Worlds</small></a>
+    <a href="/mailboxes">⚙<small>Settings</small></a>
+  </nav>
+
+  <script src="/static/js/mobile_home.js"></script>
+<script src="/static/js/mobile_home_brief_v1.js"></script>
+<script src="/static/js/mobile_home_actions_v1.js"></script>
+<script src="/static/js/banking_highlights_v1.js"></script>
+</body>
+</html>

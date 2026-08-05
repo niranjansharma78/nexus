@@ -1,29 +1,70 @@
+# -----------------------------
 # Python
+# -----------------------------
 __pycache__/
 *.py[cod]
 *.pyo
-
-# Virtual environment
-.venv/
-venv/
-
-# Logs
-*.log
-
-# Diagnostics
-nexus_diagnostic.txt
-
-# OS
-Thumbs.db
-.DS_Store
-
-# IDE
-.vscode/
-.idea/
-
-# Python caches
 .pytest_cache/
 .mypy_cache/
 
-# SQLite journal
+# -----------------------------
+# Virtual environments
+# -----------------------------
+.venv/
+venv/
+backend/.venv/
+
+# -----------------------------
+# Secrets and environment
+# -----------------------------
+.env
+.env.*
+*.pem
+*.key
+
+# -----------------------------
+# Databases and live data
+# -----------------------------
+*.db
 *.db-journal
+data/
+backend/data/
+
+# -----------------------------
+# Attachments and backups
+# -----------------------------
+attachments/
+data/attachments/
+backend/data/attachments/
+backups/
+backend/backups/
+backup_*/
+archive/
+
+# -----------------------------
+# Flutter / Dart
+# -----------------------------
+mobile/.dart_tool/
+mobile/build/
+mobile/android/.gradle/
+mobile/.flutter-plugins
+mobile/.flutter-plugins-dependencies
+mobile/.packages
+
+# -----------------------------
+# Logs and diagnostics
+# -----------------------------
+*.log
+nexus_diagnostic.txt
+
+# -----------------------------
+# IDE
+# -----------------------------
+.vscode/
+.idea/
+
+# -----------------------------
+# Operating system
+# -----------------------------
+Thumbs.db
+.DS_Store

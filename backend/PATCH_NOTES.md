@@ -1,0 +1,1 @@
+Adds PDF, Excel, CSV, DOCX and text attachment extraction with PO and dispatch intelligence.

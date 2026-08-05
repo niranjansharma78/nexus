@@ -1,4 +1,4 @@
-from pathlib import Path
+from app.api.v1.brain_context_routes import router as brain_context_router\nfrom pathlib import Path
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -62,4 +62,4 @@ def developer(request: Request):
         request=request,
         name="developer.html",
         context={},
-    )
+    )\napp.include_router(brain_context_router)\n

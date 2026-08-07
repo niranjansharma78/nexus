@@ -1,4 +1,16 @@
-from app.api.v1.brain_context_routes import router as brain_context_router\nfrom pathlib import Path
+from app.api.v1.attention_routes import router as attention_router
+from app.api.v1.trigger_routes import router as trigger_router
+from app.api.v1.runtime_v2_routes import router as runtime_v2_router
+from app.api.v1.orchestrator_routes import router as orchestrator_router
+from app.api.v1.planning_routes import router as planning_router
+from app.api.v1.decision_routes import router as decision_router
+from app.api.v1.reflection_routes import router as reflection_router
+from app.api.v1.simulation_routes import router as simulation_router
+from app.api.v1.prediction_routes import router as prediction_router
+from app.api.v1.context_engine_routes import router as context_engine_router
+from app.api.v1.executive_reasoning_routes import router as executive_reasoning_router
+from app.api.v1.brain_context_routes import router as brain_context_router
+from pathlib import Path
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -22,6 +34,7 @@ from app.api.v1.executive_feed_routes import router as executive_feed_v1_router
 from app.api.v1.conversation_routes import router as conversation_v1_router
 from app.api.v1.feedback_routes import router as feedback_v1_router
 
+from app.api.v1.runtime_routes import router as brain_runtime_router
 BASE = Path(__file__).resolve().parent
 app = FastAPI(title="Nexus Intelligence OS", version="0.4.1")
 app.mount("/static", StaticFiles(directory=BASE/"static"), name="static")
@@ -62,4 +75,17 @@ def developer(request: Request):
         request=request,
         name="developer.html",
         context={},
-    )\napp.include_router(brain_context_router)\n
+    )
+app.include_router(brain_context_router)
+app.include_router(executive_reasoning_router)
+app.include_router(brain_runtime_router)
+app.include_router(context_engine_router)
+app.include_router(prediction_router)
+app.include_router(simulation_router)
+app.include_router(reflection_router)
+app.include_router(decision_router)
+app.include_router(planning_router)
+app.include_router(orchestrator_router)
+app.include_router(runtime_v2_router)
+app.include_router(trigger_router)
+app.include_router(attention_router)
